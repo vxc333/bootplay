@@ -12,10 +12,10 @@ export default function RedirectLink({ children, linkText, redirectTo }: Props) 
 
   return (
     <>
-      <p className="pt-8 text-gray-500 flex justify-center">
+      <p className="pt-8 text-base text-G500 flex justify-center">
         {children}
         <a
-          className="font-semibold text-black underline"
+          className="font-semibold text-base text-G900 underline"
           href="/"
           onClick={(e) => {
             e.preventDefault();
