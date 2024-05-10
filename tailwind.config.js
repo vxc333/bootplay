@@ -20,13 +20,16 @@ module.exports = {
       backgroundImage: {
         imgBotton: 'url("src/assets/background.jpeg")',
       },
+      fontFamily: {
+        lato: ["Lato,sans-serif"],
+      },
       colors: {
         sysmap_ligth: "#9EE2FF",
-        G25: '#FCFCFC',
-        G500: '#686677',
-        G600: '#49475A',
-        G800: '#19181F',
-        G900: '#100F14',
+        G25: "#FCFCFC",
+        G500: "#686677",
+        G600: "#49475A",
+        G800: "#19181F",
+        G900: "#100F14",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
