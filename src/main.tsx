@@ -7,6 +7,7 @@ import Signup from "./Pages/Signup";
 import Login from "./Pages/Login";
 import Landing from "./Pages/Landing";
 import Albums from "./Pages/Albums";
+import Dashboard from "./Pages/Dashboard";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.Fragment>
@@ -17,6 +18,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
         <Route path="/" element={<Landing />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/dashboard" element={<Dashboard/>}/>
       </Routes>
     </BrowserRouter>
   </React.Fragment>

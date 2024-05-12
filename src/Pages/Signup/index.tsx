@@ -3,10 +3,10 @@ import { ms_user } from "../../services/apiService";
 import { FormEvent, useState } from "react";
 import toast from "react-hot-toast";
 import RedirectLink from "../../components/RedirectLink";
-import { Button } from "@/components/ui/button";
 import { Loader2 } from "lucide-react";
 import MainBackground from "@/components/MainBackground";
 import AuthForm from "@/components/AuthForm";
+import ButtonCustom from "../../components/custom/ButtonCustom/index";
 
 export default function Signup() {
   const [name, setName] = useState("");
@@ -56,18 +56,14 @@ export default function Signup() {
           </Input>
 
           {loading ? (
-            <Button disabled className="bg-G800 font-medium text-white h-16 rounded-3xl text-[1.375rem]">
+            <ButtonCustom disabled>
               <Loader2 className="mr-2 h-4 w-4 animate-spin " />
               Carregando...
-            </Button>
+            </ButtonCustom>
           ) : (
-            <Button
-              type="submit"
-              disabled={false}
-              className="bg-G800 font-medium text-white h-16 rounded-3xl text-[1.375rem]"
-            >
+            <ButtonCustom disabled={false} type="submit">
               Criar conta
-            </Button>
+            </ButtonCustom>
           )}
 
           <RedirectLink linkText="Entrar" redirectTo="/login">

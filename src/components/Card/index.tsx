@@ -1,13 +1,13 @@
 import React from "react";
 
-interface props {
+interface Props {
   children: React.ReactNode;
   imgAlbum?: string;
   urlAlbum: string;
   key: number;
 }
 
-export default function Card({ children, imgAlbum, urlAlbum, key }: props) {
+export default function Card({ children, imgAlbum, urlAlbum, key }: Props) {
   function handleLink(url: string) {
     window.open(url, "_blank");
   }

@@ -1,9 +1,9 @@
 import React from 'react'
 
-interface props{
+interface Props{
   children: React.ReactNode;
 }
-export default function MainBackgroun({ children}: props) {
+export default function MainBackgroun({ children}: Props) {
   return (
     <main className=" bg-imgBotton bg-no-repeat h-screen bg-cover">
       {children}

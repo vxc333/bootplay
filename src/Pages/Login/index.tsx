@@ -1,16 +1,17 @@
 import Input from "../../components/Input/index";
 import { ms_user } from "../../services/apiService";
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 import RedirectLink from "../../components/RedirectLink";
-import { Button } from "@/components/ui/button";
 import MainBackground from "@/components/MainBackground";
 import AuthForm from "@/components/AuthForm";
+import ButtonCustom from "@/components/custom/ButtonCustom";
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  async function handleLogin() {
+  async function handleLogin(event : FormEvent) {
+    event.preventDefault();
     const data = {
       email,
       password,
@@ -31,13 +32,7 @@ export default function Login() {
           <Input type="password" required onChange={(event) => setPassword(event.target.value)}>
             Password
           </Input>
-          <Button
-            type="submit"
-            disabled={false}
-            className="bg-G800 font-medium text-white h-16 rounded-3xl text-[1.375rem]"
-          >
-            Entrar
-          </Button>
+          <ButtonCustom type="submit">Entrar</ButtonCustom>
           <RedirectLink linkText="Inscrever-se" redirectTo="/signup">
             Ainda não tem uma conta?
           </RedirectLink>
