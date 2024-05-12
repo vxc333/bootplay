@@ -25,7 +25,7 @@ export default function Signup() {
     };
 
     await ms_user
-      .post("/api/users/create", data)
+      .post("/users/create", data)
       .then((resp) => {
         console.log(resp.data);
         toast.success("Conta criada com sucesso!");

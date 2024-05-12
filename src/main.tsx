@@ -8,18 +8,21 @@ import Login from "./Pages/Login";
 import Landing from "./Pages/Landing";
 import Albums from "./Pages/Albums";
 import Dashboard from "./Pages/Dashboard";
+import { AuthProvider } from "./context/AuthContext";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.Fragment>
     <Toaster position="top-right" toastOptions={{ duration: 5000 }} />
     <BrowserRouter>
-      <Routes>
-        <Route path="/test" element={<Albums/>} />
-        <Route path="/" element={<Landing />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/dashboard" element={<Dashboard/>}/>
-      </Routes>
+      <AuthProvider>
+        <Routes>
+          <Route path="/test" element={<Albums />} />
+          <Route path="/" element={<Landing />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+        </Routes>
+      </AuthProvider>
     </BrowserRouter>
   </React.Fragment>
 );

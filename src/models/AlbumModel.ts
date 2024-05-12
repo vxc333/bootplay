@@ -1,21 +1,21 @@
 export class AlbumModel {
-  albumType: string
-  artists: Artist[]
-  externalUrls: ExternalUrls
-  id: string
-  images: Image[]
-  name: string
-  releaseDate: string
-  type: string
-  value: number
-
+  albumType: string;
+  artists: Artist[];
+  externalUrls: ExternalUrls;
+  id: string;
+  images: Image[];
+  name: string;
+  releaseDate: string;
+  type: string;
+  value: number;
+}
 type Artist = {
-  externalUrls: ExternalUrls
-  href: string
-  id: string
-  name: string
-  type: string
-  uri: string
+  externalUrls: ExternalUrls;
+  href: string;
+  id: string;
+  name: string;
+  type: string;
+  uri: string;
 };
 
 type ExternalUrls = {
@@ -26,9 +26,8 @@ type _ExternalUrls = {
   additionalProp1: string;
   additionalProp2: string;
   additionalProp3: string;
-  spotify : string
+  spotify: string;
 };
-
 
 type Image = {
   height: number;

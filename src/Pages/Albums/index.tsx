@@ -9,7 +9,7 @@ export default function Albums() {
   useEffect(() => {
     ms_album.defaults.headers.common.Authorization =
       "Basic dml0b3J4YXZpZXI0NEBnbWFpbC5jb206JDJhJDEwJHQyYXR0Z3o3MG9iOThrL1ZxdTRqVU9nTEw5RmhncTZ1bjFRbmppTy9lZmRyT2xoaGN3VDJ5";
-    ms_album.get("/api/albums/all?searchText= alessandro").then((resp) => {
+    ms_album.get("/albums/all?searchText= alessandro").then((resp) => {
       setAlbums(resp.data);
       console.log(resp);
     });

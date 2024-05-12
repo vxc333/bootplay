@@ -1,23 +1,26 @@
 import Input from "../../components/Input/index";
-import { ms_user } from "../../services/apiService";
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import RedirectLink from "../../components/RedirectLink";
 import MainBackground from "@/components/MainBackground";
 import AuthForm from "@/components/AuthForm";
 import ButtonCustom from "@/components/custom/ButtonCustom";
+import { useAuth } from "@/hooks/UseAuth";
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const { Login, isAuthenticated } = useAuth();
 
-  async function handleLogin(event : FormEvent) {
+  useEffect(() => {
+    if (isAuthenticated) {
+      window.location.href = "/dashboard";
+    }
+  }, [isAuthenticated]);
+
+  async function handleLogin(event: FormEvent) {
     event.preventDefault();
-    const data = {
-      email,
-      password,
-    };
 
-    await ms_user.post("/api/users/auth", data);
+    await Login(email, password);
   }
 
   return (
