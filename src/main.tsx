@@ -10,8 +10,8 @@ import Landing from "./Pages/Landing";
 import Dashboard from "./Pages/Dashboard";
 import { AuthProvider } from "./context/AuthContext";
 import PrivateRoutes from "./utils/PrivateRoutes";
-
-import Albums from "./components/Albums";
+import CarouselAlbum from "./components/CarouselAlbum";
+import MyWallet from "./Pages/MyWallet";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.Fragment>
@@ -19,7 +19,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
     <BrowserRouter>
       <AuthProvider>
         <Routes>
-          <Route path="/test" element={<Albums />} />
+          <Route path="/test" element={<CarouselAlbum />} />
 
           <Route path="*" element={<Landing />} />
           <Route path="/" index element={<Landing />} />
@@ -27,7 +27,8 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
           <Route path="/login" element={<Login />} />
           <Route path="" element={<PrivateRoutes />}>
             <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/myRecords" element={<MyRecords />} />
+            <Route path="/myrecords" element={<MyRecords />} />
+            <Route path="/mywallet" element={<MyWallet />} />
           </Route>
         </Routes>
       </AuthProvider>
