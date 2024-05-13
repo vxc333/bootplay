@@ -9,10 +9,10 @@ export default function CarouselAlbum() {
   const [albums, setAlbums] = useState<AlbumModel[]>([]);
 
   useEffect(() => {
+    const userToken = localStorage.getItem("@User.Token");
     const searchDefault = "rock";
-    ms_album.defaults.headers.common.Authorization =
-      "Basic dml0b3J4YXZpZXI0NEBnbWFpbC5jb206JDJhJDEwJHQyYXR0Z3o3MG9iOThrL1ZxdTRqVU9nTEw5RmhncTZ1bjFRbmppTy9lZmRyT2xoaGN3VDJ5";
-    ms_album.get(`/albums/all?searchText= ${searchDefault}`).then((resp) => {
+    ms_album.defaults.headers.common.Authorization = `Basic ${userToken}`;
+    ms_album.get(`/albums/all?searchText=${searchDefault}`).then((resp) => {
       setAlbums(resp.data);
       console.log(resp);
     });

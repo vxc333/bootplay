@@ -32,6 +32,7 @@ export const AlbumProvider: React.FC<Props> = ({ children }) => {
   const [albumData, setAlbumData] = useState<AlbumModel[]>([]);
   const [albumCollection, setAlbumCollection] = useState<AlbumModel[]>([]);
 
+  // APAGAR
   const searchAlbum = useCallback(async (searchText: string) => {
     try {
       const resp = await ms_album.get(`/albums/all?search=${searchText}`);
@@ -40,6 +41,8 @@ export const AlbumProvider: React.FC<Props> = ({ children }) => {
       console.error("Erro ao buscar álbuns:", error);
     }
   }, []);
+
+  //
 
   const buyAlbum = useCallback(
     async (

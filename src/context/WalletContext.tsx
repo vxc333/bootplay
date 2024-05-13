@@ -20,9 +20,8 @@ export const WalletProvider: React.FC<Props> = ({ children }) => {
   const getWallet = useCallback(async () => {
     try {
       const userToken = getUserToken();
-
       ms_user.defaults.headers.common.Authorization = `Basic ${userToken}`;
-      const respUserWallet = await ms_user.get<WalletModel>("/wallet/");
+      const respUserWallet = await ms_user.get<WalletModel>("/wallet");
       setWalletData(respUserWallet.data);
     } catch (error) {
       console.error("Erro ao obter carteira:", error);
@@ -44,7 +43,7 @@ export const WalletProvider: React.FC<Props> = ({ children }) => {
   }, []);
 
   const getUserToken = (): string => {
-    const userToken = localStorage.getItem("@UserToken");
+    const userToken = localStorage.getItem("@User.Token");
 
     if (!userToken) {
       throw new Error("Token de usuário ausente no armazenamento local.");

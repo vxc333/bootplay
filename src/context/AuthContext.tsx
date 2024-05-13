@@ -40,6 +40,7 @@ export const AuthProvider: React.FC<Props> = ({ children }) => {
       const userInfo = respUserInfo.data;
 
       localStorage.setItem("@Auth.Data", JSON.stringify(userInfo));
+      localStorage.setItem("@User.Token", respAuth.data.token);
       setUserData(userInfo);
       setIsAuthenticated(true);
     } catch (error) {
@@ -50,6 +51,7 @@ export const AuthProvider: React.FC<Props> = ({ children }) => {
 
   const logout = useCallback(() => {
     localStorage.removeItem("@Auth.Data");
+    localStorage.removeItem("@User.Token");
     setUserData(undefined);
     setIsAuthenticated(false);
   }, []);

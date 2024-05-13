@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import DropdownMenuCustom from "../custom/DropdownMenuCustom";
 
 interface Props {
+  
   styleRecords ?: string
   styleWallet ?: string
 }
@@ -22,17 +23,17 @@ export default function NavDashboard({styleRecords,styleWallet}:Props) {
       </div>
       <div className="flex justify-end gap-[3rem] items-center">
         <a
-          className={`text-white text-base hover:font-extrabold hover:text-[15px] ${styleRecords}`}
+          className={`text-white text-base cursor-pointer hover:font-extrabold hover:text-[15px] ${styleRecords}`}
           onClick={(e) => {
             e.preventDefault();
-            _navigate("/myRecords");
+            _navigate("/myalbuns");
           }}
         >
           Meus Discos
         </a>
         <a
       
-          className={`text-white text-base hover:font-extrabold hover:text-[15px] ${styleWallet}`}
+          className={`text-white text-base cursor-pointer hover:font-extrabold hover:text-[15px] ${styleWallet}`}
           onClick={(e) => {
             e.preventDefault();
             _navigate("/mywallet");
