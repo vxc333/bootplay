@@ -19,6 +19,7 @@ module.exports = {
     extend: {
       backgroundImage: {
         imgBotton: 'url("src/assets/background.jpeg")',
+        imgDashboard: 'url("src/assets/home.jpeg") ',
       },
       fontFamily: {
         lato: ["Lato,sans-serif"],
@@ -26,6 +27,7 @@ module.exports = {
       colors: {
         sysmap_ligth: "#9EE2FF",
         G25: "#FCFCFC",
+        G300: "#CBCAD7",
         G500: "#686677",
         G600: "#49475A",
         G800: "#19181F",

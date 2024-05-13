@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 
 export default function Landing() {
-  const navigate = useNavigate();
+  const _navigate = useNavigate();
 
   return (
     <MainBackground>
@@ -16,7 +16,7 @@ export default function Landing() {
           <div className="flex gap-3">
             <Button className="bg-[#010B0F] text-white rounded-3xl py-[0.531rem] w-[12.5rem] text-xl " onClick={(e) => {
               e.preventDefault();
-              navigate("/login");
+              _navigate("/login");
             }}>
               Entrar
             </Button>
@@ -24,7 +24,7 @@ export default function Landing() {
               className="bg-sysmap_ligth text-black rounded-3xl py-[0.531rem] w-[12.5rem] text-xl "
               onClick={(e) => {
                 e.preventDefault();
-                navigate("/signup");
+                _navigate("/signup");
               }}
             >
               Inscrever-se
@@ -43,7 +43,7 @@ export default function Landing() {
             className="bg-sysmap_ligth text-black rounded-[2rem] h-16  w-[16.813rem] text-xl "
             onClick={(e) => {
               e.preventDefault();
-              navigate("/signup");
+              _navigate("/signup");
             }}
           >
             Inscrever-se

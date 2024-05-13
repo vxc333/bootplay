@@ -23,9 +23,9 @@ export default function Card({ children, imgAlbum, urlAlbum, key }: Props) {
     >
       <div
         onClick={() => handleLink(urlAlbum)}
-        className="flex h-full justify-center items-center cursor-pointer"
+        className="flex h-full justify-center items-center cursor-pointer backdrop-brightness-50"
       >
-        <h1 className="font-bold text-[2.347rem] font-lato text-white flex justify-center text-center items-center w-full h-full backdrop-brightness-50">
+        <h1 className="font-bold text-[2.347rem] font-lato text-white  text-center   ">
           {children}
         </h1>
       </div>

@@ -1,5 +1,5 @@
 import { UserModel } from "@/models/UserModel";
-import { ms_user } from "@/services/apiService";
+import { ms_album, ms_user } from "@/services/apiService";
 import { createContext, useCallback, useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
 
@@ -25,8 +25,8 @@ export const AuthProvider: React.FC<Props> = ({ children }) => {
       setIsAuthenticated(true);
       setUserData(data);
     }
-    Logout();
   }, []);
+
 
   const Login = useCallback(async (email: string, password: string) => {
     const respAuth = await ms_user.post("/users/auth", { email, password });
@@ -36,6 +36,7 @@ export const AuthProvider: React.FC<Props> = ({ children }) => {
     }
 
     ms_user.defaults.headers.common.Authorization = `Basic ${respAuth.data.token}`;
+    ms_album.defaults.headers.common.Authorization = `Basic ${respAuth.data.token}`;
     const respUserInfo = await ms_user.get(`/users/${respAuth.data.id}`);
 
     if (respUserInfo instanceof Error) {
