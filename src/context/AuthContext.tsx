@@ -1,9 +1,11 @@
 import { UserModel } from "@/models/UserModel";
 import { ms_user } from "@/services/apiService";
 import { createContext, useCallback, useEffect, useState } from "react";
+import { Navigate } from "react-router-dom";
 
 interface AuthContextModel extends UserModel {
-  Login: (email: string, password: string) => Promise<string | void>;
+  login: (email: string, password: string) => Promise<string | void>;
+  logout: () => void;
   isAuthenticated: boolean;
 }
 
@@ -15,10 +17,15 @@ interface Props {
 
 export const AuthProvider: React.FC<Props> = ({ children }) => {
   const [userData, setUserData] = useState<UserModel>();
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
 
   useEffect(() => {
     const data: UserModel = JSON.parse(localStorage.getItem("@Auth.Data") || "{}");
-    setUserData(data);
+    if (data.id) {
+      setIsAuthenticated(true);
+      setUserData(data);
+    }
+    Logout();
   }, []);
 
   const Login = useCallback(async (email: string, password: string) => {
@@ -35,16 +42,23 @@ export const AuthProvider: React.FC<Props> = ({ children }) => {
       return respUserInfo.message;
     }
 
-    setUserData(respUserInfo.data);
-
     localStorage.setItem("@Auth.Data", JSON.stringify(respUserInfo.data));
+    setUserData(respUserInfo.data);
+    setIsAuthenticated(true);
+  }, []);
+
+  const Logout = useCallback(() => {
+    localStorage.removeItem("@Auth.Data");
+    setUserData(undefined);
+    setIsAuthenticated(false);
+    return <Navigate to="/login" />;
   }, []);
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated: !!userData, ...userData, Login }}>
+    <AuthContext.Provider
+      value={{ isAuthenticated: isAuthenticated, ...userData, login: Login, logout: Logout }}
+    >
       {children}
     </AuthContext.Provider>
   );
 };
-
-// Logout , outra tela , verificar se ta logado

@@ -1,7 +1,12 @@
-import React from 'react'
+import ButtonCustom from "@/components/custom/ButtonCustom";
+import { useAuth } from "@/hooks/UseAuth";
 
-export default function index() {
+export default function Dashboard() {
+  const { logout } = useAuth();
+
   return (
-    <div>DASHBOARD</div>
-  )
+    <div>
+      <ButtonCustom onClick={() => logout()}>Sair</ButtonCustom>
+    </div>
+  );
 }
