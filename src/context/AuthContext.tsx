@@ -1,7 +1,6 @@
 import { UserModel } from "@/models/UserModel";
 import { ms_album, ms_user } from "@/services/apiService";
 import { createContext, useCallback, useEffect, useState } from "react";
-import { Navigate } from "react-router-dom";
 
 interface AuthContextModel extends UserModel {
   login: (email: string, password: string) => Promise<string | void>;
@@ -16,49 +15,47 @@ interface Props {
 }
 
 export const AuthProvider: React.FC<Props> = ({ children }) => {
-  const [userData, setUserData] = useState<UserModel>();
+  const [userData, setUserData] = useState<UserModel | undefined>();
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
 
   useEffect(() => {
-    const data: UserModel = JSON.parse(localStorage.getItem("@Auth.Data") || "{}");
-    if (data.id) {
+    const storedUserData: UserModel | null = JSON.parse(
+      localStorage.getItem("@Auth.Data") || "null"
+    );
+    if (storedUserData) {
       setIsAuthenticated(true);
-      setUserData(data);
+      setUserData(storedUserData);
     }
   }, []);
 
+  const login = useCallback(async (email: string, password: string) => {
+    try {
+      const respAuth = await ms_user.post("/users/auth", { email, password });
+      const token = respAuth.data.token;
 
-  const Login = useCallback(async (email: string, password: string) => {
-    const respAuth = await ms_user.post("/users/auth", { email, password });
+      ms_user.defaults.headers.common.Authorization = `Basic ${token}`;
+      ms_album.defaults.headers.common.Authorization = `Basic ${token}`;
 
-    if (respAuth instanceof Error) {
-      return respAuth.message;
+      const respUserInfo = await ms_user.get<UserModel>(`/users/${respAuth.data.id}`);
+      const userInfo = respUserInfo.data;
+
+      localStorage.setItem("@Auth.Data", JSON.stringify(userInfo));
+      setUserData(userInfo);
+      setIsAuthenticated(true);
+    } catch (error) {
+      console.error("Erro ao fazer login:", error);
+      throw new Error("Erro ao fazer login.");
     }
-
-    ms_user.defaults.headers.common.Authorization = `Basic ${respAuth.data.token}`;
-    ms_album.defaults.headers.common.Authorization = `Basic ${respAuth.data.token}`;
-    const respUserInfo = await ms_user.get(`/users/${respAuth.data.id}`);
-
-    if (respUserInfo instanceof Error) {
-      return respUserInfo.message;
-    }
-
-    localStorage.setItem("@Auth.Data", JSON.stringify(respUserInfo.data));
-    setUserData(respUserInfo.data);
-    setIsAuthenticated(true);
   }, []);
 
-  const Logout = useCallback(() => {
+  const logout = useCallback(() => {
     localStorage.removeItem("@Auth.Data");
     setUserData(undefined);
     setIsAuthenticated(false);
-    return <Navigate to="/login" />;
   }, []);
 
   return (
-    <AuthContext.Provider
-      value={{ isAuthenticated: isAuthenticated, ...userData, login: Login, logout: Logout }}
-    >
+    <AuthContext.Provider value={{ isAuthenticated, ...userData, login, logout }}>
       {children}
     </AuthContext.Provider>
   );

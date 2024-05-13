@@ -7,12 +7,16 @@ import { Loader2 } from "lucide-react";
 import MainBackground from "@/components/MainBackground";
 import AuthForm from "@/components/AuthForm";
 import ButtonCustom from "../../components/custom/ButtonCustom/index";
+import { useAuth } from "@/hooks/UseAuth";
+import { useNavigate } from "react-router-dom";
 
 export default function Signup() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  const { login } = useAuth();
+  const _navigate = useNavigate();
 
   async function handleSignup(event: FormEvent) {
     setLoading(true);
@@ -30,6 +34,15 @@ export default function Signup() {
         console.log(resp.data);
         toast.success("Conta criada com sucesso!");
         setLoading(false);
+
+        login(email, password)
+          .then(() => {
+            toast.success("Login efetuado com sucesso!");
+            _navigate("/dashboard");
+          })
+          .catch(() => {
+            toast.error("Erro ao efetuar login após a criação!");
+          });
       })
       .catch((err) => {
         console.log(err.response.data);
