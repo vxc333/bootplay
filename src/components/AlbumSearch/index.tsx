@@ -5,9 +5,10 @@ import Card from "../Card";
 
 interface Props {
   search?: string;
+  onClick: (album: AlbumModel) => void;
 }
 
-export default function Albums({ search }: Props) {
+export default function Albums({ search, onClick }: Props) {
   const [albums, setAlbums] = useState<AlbumModel[]>([]);
 
   useEffect(() => {
@@ -24,6 +25,7 @@ export default function Albums({ search }: Props) {
       <section className="flex flex-wrap justify-center h-full gap-5 bg-G800 px-[10%]">
         {albums?.map((album, index) => (
           <Card
+            onClick={() => onClick(album)}
             key={index}
             urlAlbum={album.externalUrls.externalUrls.spotify}
             imgAlbum={album.images[0].url}

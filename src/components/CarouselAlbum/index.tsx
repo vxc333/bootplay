@@ -4,8 +4,13 @@ import "react-multi-carousel/lib/styles.css";
 import "./style.css";
 import { ms_album } from "@/services/apiService";
 import { AlbumModel } from "@/models/AlbumModel";
+import Card from "../Card";
 
-export default function CarouselAlbum() {
+interface Props {
+  onClick: (album: AlbumModel) => void;
+}
+
+export default function CarouselAlbum({ onClick }: Props) {
   const [albums, setAlbums] = useState<AlbumModel[]>([]);
 
   useEffect(() => {
@@ -20,23 +25,28 @@ export default function CarouselAlbum() {
 
   const responsive = {
     desktop: {
-      breakpoint: { max: 3000, min: 1390 },
-      items: 6,
-      slidesToSlide: 1,
-    },
-    tablet: {
-      breakpoint: { max: 1390, min: 768 },
+      breakpoint: { max: 3000, min: 1661 },
       items: 5,
       slidesToSlide: 1,
     },
+    tablet: {
+      breakpoint: { max: 1661, min: 1260 },
+      items: 4,
+      slidesToSlide: 1,
+    },
     mobile: {
-      breakpoint: { max: 767, min: 464 },
+      breakpoint: { max: 1260, min: 924 },
       items: 3,
+      slidesToSlide: 1,
+    },
+    mobile2: {
+      breakpoint: { max: 924, min: 464 },
+      items: 2,
       slidesToSlide: 1,
     },
   };
   return (
-    <div className="parent px-[5%]">
+    <div className="parent px-[10%] pt-[2%]">
       <Carousel
         arrows={false}
         responsive={responsive}
@@ -47,13 +57,16 @@ export default function CarouselAlbum() {
         partialVisible={false}
         dotListClass="custom-dot-list-style"
       >
-        {albums.map((album, index) => {
-          return (
-            <div className="slider" key={index}>
-              <img src={album.images[0].url} alt="music" />
-            </div>
-          );
-        })}
+        {albums?.map((album, index) => (
+          <Card
+            key={index}
+            onClick={() => onClick(album)}
+            urlAlbum={album.externalUrls.externalUrls.spotify}
+            imgAlbum={album.images[0].url}
+          >
+            {album.name}
+          </Card>
+        ))}
       </Carousel>
     </div>
   );

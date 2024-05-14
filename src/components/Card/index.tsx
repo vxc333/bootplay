@@ -3,14 +3,12 @@ import React from "react";
 interface Props {
   children: React.ReactNode;
   imgAlbum?: string;
-  urlAlbum: string;
+  urlAlbum?: string;
+  onClick: () => void;
   key: number;
 }
 
-export default function Card({ children, imgAlbum, urlAlbum, key }: Props) {
-  function handleLink(url: string) {
-    window.open(url, "_blank");
-  }
+export default function Card({ children, imgAlbum, onClick, key }: Props) {
   return (
     <div
       key={key}
@@ -19,15 +17,13 @@ export default function Card({ children, imgAlbum, urlAlbum, key }: Props) {
           "--bg-card": `url(${imgAlbum})`,
         } as React.CSSProperties
       }
-      className="bg-[image:var(--bg-card)] bg-cover bg-no-repeat w-72 h-72 rounded-md"
+      className="bg-[image:var(--bg-card)] bg-cover bg-no-repeat w-64 h-64 rounded-md"
     >
       <div
-        onClick={() => handleLink(urlAlbum)}
+        onClick={onClick}
         className="flex h-full justify-center items-center cursor-pointer backdrop-brightness-50"
       >
-        <h1 className="font-bold text-[2.347rem] font-lato text-white  text-center   ">
-          {children}
-        </h1>
+        <h1 className="font-bold text-[2rem] font-lato text-white text-center   ">{children}</h1>
       </div>
     </div>
   );
