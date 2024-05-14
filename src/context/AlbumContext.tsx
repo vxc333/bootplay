@@ -23,7 +23,7 @@ interface Props {
 export const AlbumProvider: FC<Props> = ({ children }) => {
   const [albumCollection, setAlbumCollection] = useState<AlbumModel[]>([]);
 
-  const AlbumSale = useCallback(
+  const albumSale = useCallback(
     async (
       name?: string,
       idSpotify?: string,
@@ -52,7 +52,7 @@ export const AlbumProvider: FC<Props> = ({ children }) => {
     []
   );
 
-  const GetUserCollection = useCallback(async () => {
+  const getUserCollection = useCallback(async () => {
     const authData = localStorage.getItem("@Auth.Data");
     const userToken = localStorage.getItem("@User.Token");
 
@@ -70,13 +70,11 @@ export const AlbumProvider: FC<Props> = ({ children }) => {
   }, []);
 
   return (
-    <AlbumContext.Provider
-      value={{
-        albumCollection,
-        albumSale: AlbumSale,
-        getUserCollection: GetUserCollection,
-      }}
-    >
+    <AlbumContext.Provider value={{
+      albumCollection,
+      albumSale,
+      getUserCollection
+    }}>
       {children}
     </AlbumContext.Provider>
   );

@@ -11,7 +11,7 @@ interface Props {
 export function CardAlbum({ children, img, label }: Props) {
   return (
     <div>
-      <Card className="w-[350px] flex items-center pl-[5%]">
+      <Card className="w-[min-350px] flex items-center pl-[5%]">
         <img className="rounded-full bg-black p-2 border h-14" src={img} />
         <CardHeader>
           <CardTitle className="">{children}</CardTitle>

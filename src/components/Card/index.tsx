@@ -4,7 +4,7 @@ interface Props {
   children: React.ReactNode;
   imgAlbum?: string;
   urlAlbum?: string;
-  onClick: () => void;
+  onClick?: () => void;
   key: number;
 }
 
