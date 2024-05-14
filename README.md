@@ -1,30 +1,20 @@
-# React + TypeScript + Vite
+# Sysmap Bootcamp Front-end Project - Vitor Xavier Correia
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Description
+A music store application built using the bootcamp's developed APIs during the back-end part of the course.
 
-Currently, two official plugins are available:
+Built with React, Vite, and Tailwind.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Requirements
 
-## Expanding the ESLint configuration
+- VSCode
+- Git
+- Docker
+- Node.js
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## Instructions
+1. Clone this repository to your local machine: `https://github.com/bc-fullstack-04/vitor-xavier-frontend.git`.
+2. Open the folder where you have cloned the repository in VSCode.
+3. Open the terminal in VSCode and run the command: `npm install`.
+4. After running the previous command, run this command on the same terminal: `docker-compose up -d`. This will ensure that the necessary back-end APIs are pulled.
+5. The last step is to check out the website. Run `npm run dev` on the same terminal and access the localhost path provided.
